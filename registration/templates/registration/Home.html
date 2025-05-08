@@ -1,0 +1,52 @@
+{% extends "registration/Base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/registration/registration_home.css' %}" />
+
+<title>PrivatePing: A secure messaging Application</title>
+</head>
+
+<body>
+  <span id="pageloader" class="pageloader"></span>
+
+  <div id="Maincontent" class="container">
+    <img class="logo" src="{% static '/images/logo/png/logo-no-background.png' %}" alt="Logo" />
+    <div class="buttons">
+      <button onclick="login();">Login</button>
+      <button onclick="register();">Signup</button>
+    </div>
+    <div class="buttons">
+      <button onclick="anonymousLogin();">Anonymous Direct Login</button>
+    </div>
+    <b>
+      <p class="fact-title"></p>
+    </b>
+    <small class="fact">{% if fact is not None %} {{fact}} {%endif%}</small>
+    <div class="buttons">
+      <h5 class="credits" id="credits">
+
+        <a target="_blank" href="#"></a>
+        <a target="_blank" href="#"></a><a target="_blank" href="#"></a>.
+        <br>
+        <a target="_blank" href="#"></a>
+      </h5>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="{% static 'js/registration/registration_home.js' %}"></script>
+  <script>
+    function login() {
+      window.location.href = "{% url 'registration:login' %}";
+    }
+    function register() {
+      window.location.href = "{% url 'registration:register' %}";
+    }
+
+    function anonymousLogin() {
+      window.location.href =
+        "{% url 'registration:anonymous_direct_login' %}";
+    }
+  </script>
+  {% endblock %}
